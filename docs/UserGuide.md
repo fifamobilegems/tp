@@ -239,11 +239,11 @@ Prefixes have several variations with different notations:
 
 ### Adding Contacts
 
-**Command:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS h/TELEGRAM HANDLE [t/TAG]..`
+**Command:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS h/TELEGRAM HANDLE [t/TAG].. c/CLOSENESS`
 
 **Example:**
 ```
-add n/John Doe p/91234567 e/john@example.com a/123 Street h/@johndoe t/friend
+add n/John Doe p/91234567 e/john@example.com a/123 Street h/@johndoe t/friend c/3
 ```
 **Name formatting** :
 - Name is not case-sensitive.  The first character of each word is captalised, leaving the rest of the characters in lower case (eg. `JOHN DOE`, `jOhN dOe` will all be recorded as `John Doe`)
@@ -329,12 +329,30 @@ delete all t/friends
 ```
 
 **Success:**
-Single Deletion: Shows deleted contact(s) details
-Multiple Deletion: Shows number of deleted contats
+- Single Deletion: Displays the details of the deleted contact.
+Example:
+```
+Deleted Person: John Doe; Phone: 91234567; Email: john@example.com; Address: 123 Street; Tags: [friend]
+```
+
+- Multiple Deletion: Shows number of deleted contacts, followed by details of each contact deleted
+```
+Deleted 2 People:
+John Doe; Phone: 91234567; Email: john@example.com; Address: 123 Street; Tags: [friend]
+John Dog; Phone: 91934121; Email: johnd@email.com; Address: 09821 Street; Tags: [friend]
+```
 
 **Errors:**
-- No contact found with index: `The person index provided is invalid`
+- Index is not a non-zero unsigned integer: `The person index is not a non-zero unsigned integer.`
+- Index is not a positive integer: `The person index must be a positive integer!` 
+- No contact found with index: 
+```
+Deleted 0 People:
+
+Invalid index(es): <INDEX>...
+```
 - No contact found with delete all tag: `No persons found with tag: <TAG>`
+- Tag has invalid format: `Invalid tag format! Tags should contain only alphanumeric characters.`
 
 ---
 
